@@ -27,27 +27,21 @@ public class Game : GameWindow
         _shader = new ShaderProgram();
         _u = new Utils();
         VSync = VSyncMode.On;
-        _object1 = new LetraT(-100, -400, 0);
+        _object1 = new LetraT(0, 0, 0);
 
     }
 
     protected override void OnLoad()
     {
         base.OnLoad();
-
         GL.ClearColor(Color4.CornflowerBlue);
         GL.Enable(EnableCap.DepthTest);
-
         _shaderProgram = _shader.CreateShaderProgram();
-
-        // Configurar las matrices de proyección y vista en el shader
         UpdateProjectionMatrix();
         _viewMatrix = Matrix4.LookAt(new Vector3(0, 0, 5), Vector3.Zero, Vector3.UnitY);
-
         GL.UseProgram(_shaderProgram);
         GL.UniformMatrix4(GL.GetUniformLocation(_shaderProgram, "projection"), false, ref _projectionMatrix);
         GL.UniformMatrix4(GL.GetUniformLocation(_shaderProgram, "view"), false, ref _viewMatrix);
-
     }
 
     protected override void OnUpdateFrame(FrameEventArgs e)
@@ -72,21 +66,7 @@ public class Game : GameWindow
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.UseProgram(_shaderProgram);
-
-        // Envía las matrices al shader
-        int modelLocation = GL.GetUniformLocation(_shaderProgram, "model");
-        GL.UniformMatrix4(modelLocation, false, ref _object1._modelMatrix);
-
-        int viewLocation = GL.GetUniformLocation(_shaderProgram, "view");
-        GL.UniformMatrix4(viewLocation, false, ref _viewMatrix);
-
-        int projectionLocation = GL.GetUniformLocation(_shaderProgram, "projection");
-        GL.UniformMatrix4(projectionLocation, false, ref _projectionMatrix);
-
-        // Dibujar los objetos
         _object1.Draw(_shaderProgram);
-
-
         SwapBuffers();
     }
 
@@ -95,22 +75,18 @@ public class Game : GameWindow
     protected override void OnResize(ResizeEventArgs e)
     {
         base.OnResize(e);
-
-        // Actualizar la matriz de proyección en base a la resolución
         UpdateProjectionMatrix();
-
         GL.UseProgram(_shaderProgram);
         GL.UniformMatrix4(GL.GetUniformLocation(_shaderProgram, "projection"), false, ref _projectionMatrix);
     }
 
     private void UpdateProjectionMatrix()
     {
-
         _projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(
-            MathHelper.DegreesToRadians(45.0f), // Field of view
-           Size.X / (float)Size.Y,            // Aspect ratio
-            0.1f,                              // Near plane
-            100.0f                             // Far plane
+            MathHelper.DegreesToRadians(45.0f),
+           Size.X / (float)Size.Y,           
+            0.1f,                            
+            100.0f                           
         );
     }
 
