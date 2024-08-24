@@ -1,5 +1,5 @@
+using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
-
 public class Cuadrado : GameObject
 {
 
@@ -42,6 +42,6 @@ public class Cuadrado : GameObject
     1.0f, 1.0f, 1.0f  // Blanco
         };
 
-    public Cuadrado(Vector3 position) : base(_vertices, _indices, _colors, position) { }
+    public Cuadrado(int x, int y,int z) : base(_vertices,_indices ,_colors,x,y,z) { }
 
 }

@@ -72,6 +72,6 @@ public class LetraT : GameObject
 
         };
 
-    public LetraT(Vector3 position) : base(_vertices, _indices, _colors, position) { }
+    public LetraT(int x, int y ,int z) : base(_vertices, _indices, _colors, x,y,z) { }
 
 }

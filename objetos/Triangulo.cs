@@ -1,5 +1,6 @@
-using OpenTK.Mathematics;
 
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 public class Triangulo : GameObject
 {
 
@@ -24,6 +25,6 @@ public class Triangulo : GameObject
     0.0f, 0.0f, 1.0f  // Azul
         };
 
-    public Triangulo(Vector3 position) : base(_vertices, _indices, _colors, position) { }
+    public Triangulo(int x,int y,int z ) : base(_vertices, _indices,_colors, x,y,z) { }
 
 }

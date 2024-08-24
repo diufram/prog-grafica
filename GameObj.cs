@@ -1,3 +1,4 @@
+using Converter.converter;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
@@ -7,7 +8,7 @@ public class GameObject
     public int VertexBuffer { get; private set; }
     public int ColorBuffer { get; private set; }
     public int IndexBuffer { get; private set; }
-    public Vector3 Position { get; private set; } 
+    public Vector3 Position { get; private set; }
 
 
 
@@ -17,14 +18,21 @@ public class GameObject
     public Matrix4 _modelMatrix = Matrix4.Identity;
     private Vector3 _posicion;
 
+    private int _x;
+    private int _y;
+    private int _z;
 
-    public float[] Vertices{
-        get=> _vertices;
-        set=>_vertices = value;
+
+
+    public float[] Vertices
+    {
+        get => _vertices;
+        set => _vertices = value;
     }
-    public uint[] Indices{
-        get=> _indices;
-        set=>_indices = value;
+    public uint[] Indices
+    {
+        get => _indices;
+        set => _indices = value;
     }
     public Matrix4 ModelMatrix
     {
@@ -32,12 +40,18 @@ public class GameObject
         set => _modelMatrix = value;
     }
 
-    public GameObject(float[] vertices, uint[] indices, float[] colors, Vector3 posicion)
+    public GameObject(float[] vertices, uint[] indices, float[] colors, int x, int y, int z)
     {
         _vertices = vertices;
         _indices = indices;
         _colors = colors;
+        var converter = new CoordinateConverter(800, 600);
+        _x = x;
+        _y = y;
+        _z = z;
+        Vector3 posicion = new Vector3(x, y, z);
         _posicion = posicion;
+        _modelMatrix = Matrix4.CreateTranslation(converter.AbsoluteToRelative(posicion));
         InitializeBuffers();
     }
 
@@ -60,13 +74,13 @@ public class GameObject
         GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
         GL.EnableVertexAttribArray(0);
 
-/*         // Configurar el buffer de colores
-        GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBuffer);
-        GL.BufferData(BufferTarget.ArrayBuffer, _colors.Length * sizeof(float), _colors, BufferUsageHint.StaticDraw);
-        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-        GL.EnableVertexAttribArray(1); */
+        /*         // Configurar el buffer de colores
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBuffer);
+                GL.BufferData(BufferTarget.ArrayBuffer, _colors.Length * sizeof(float), _colors, BufferUsageHint.StaticDraw);
+                GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+                GL.EnableVertexAttribArray(1); */
 
-              // Configurar el buffer de colores
+        // Configurar el buffer de colores
         GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBuffer);
         GL.BufferData(BufferTarget.ArrayBuffer, _colors.Length * sizeof(float), _colors, BufferUsageHint.StaticDraw);
         GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, 4 * sizeof(float), 0); // Asegúrate de usar 4 para RGBA
