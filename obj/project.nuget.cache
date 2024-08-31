@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0PGq+CuGEUmMrHSiMxG+FWrZX8tcFgZeLqqyKYfbek2B+BXggVSFgZSaS3h4xqC81M7PEsvQIsWnyvayk9BYkQ==",
+  "dgSpecHash": "dBWURO+8wQzH+yyhZ+U6tH+sdFUnDkjoo6vqPXEBU+8KAsDNqb1NjuwNjnGLJmSk6QgLmn7JxdYeqJqMD5GVSQ==",
   "success": true,
-  "projectFilePath": "/Users/matias/Desktop/Modelacion3d/Modelacion3d.csproj",
+  "projectFilePath": "/Users/matias/Desktop/Prog-Grafica/prog-grafica/Modelacion3d.csproj",
   "expectedPackageFiles": [
     "/Users/matias/.nuget/packages/opentk/4.8.2/opentk.4.8.2.nupkg.sha512",
     "/Users/matias/.nuget/packages/opentk.audio.openal/4.8.2/opentk.audio.openal.4.8.2.nupkg.sha512",

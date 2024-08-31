@@ -419,11 +419,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/matias/Desktop/Modelacion3d/Modelacion3d.csproj",
+      "projectUniqueName": "/Users/matias/Desktop/Prog-Grafica/prog-grafica/Modelacion3d.csproj",
       "projectName": "Modelacion3d",
-      "projectPath": "/Users/matias/Desktop/Modelacion3d/Modelacion3d.csproj",
+      "projectPath": "/Users/matias/Desktop/Prog-Grafica/prog-grafica/Modelacion3d.csproj",
       "packagesPath": "/Users/matias/.nuget/packages/",
-      "outputPath": "/Users/matias/Desktop/Modelacion3d/obj/",
+      "outputPath": "/Users/matias/Desktop/Prog-Grafica/prog-grafica/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/matias/.nuget/NuGet/NuGet.Config"
